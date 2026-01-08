@@ -2,7 +2,7 @@ TESTS_DIR = src
 
 TESTS_M = 
 TESTS_B = 
-TESTS_F = $(TESTS_DIR)/stack.c
+TESTS_F = $(TESTS_DIR)/stack.c $(TESTS_DIR)/parse.c
 
 TESTS = $(TESTS_M) $(TESTS_B) $(TESTS_F)
 
@@ -45,7 +45,7 @@ INCLUDE_DIR = $(ROOT_DIR)/include
 
 SRC_DIR = $(ROOT_DIR)/src
 
-SRC = $(SRC_DIR)/stack.c
+SRC = $(SRC_DIR)/stack.c $(SRC_DIR)/parse.c
 
 OBJ = $(SRC:.c=.o)
 
