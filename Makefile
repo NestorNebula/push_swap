@@ -20,7 +20,7 @@ INCLUDE_DIR = include
 
 SRC_DIR = src
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/stack.c
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/stack.c $(SRC_DIR)/parse.c
 
 OBJ = $(SRC:.c=.o)
 
