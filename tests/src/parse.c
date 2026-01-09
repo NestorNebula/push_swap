@@ -15,6 +15,10 @@ int	test_valid_args(const char **args, size_t args_size,
 	(void) parse_args(args, args_size, stack);
 	errors += expect_true(ft_memcmp(stack->content, expected_stack, sizeof(int) * expected_size) == 0,
 		"parse_args (fills stack as expected)");
+	errors += expect_eq_int(stack->top, stack->size,
+		"parse_args(sets stack top to the size of the stack)");
+	errors += expect_eq_int(stack->bottom, 0,
+		"parse_args(sets stack bottom to 0)");
 	free_stack(stack);
 	expect_true(errors == 0, test);
 	return (errors);
