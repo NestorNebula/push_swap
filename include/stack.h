@@ -17,7 +17,7 @@
 
 typedef struct s_stack {
 	int			*content;
-	int			size;
+	size_t		size;
 	uint64_t	top;
 	uint64_t	bottom;
 }				t_stack;
