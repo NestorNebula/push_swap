@@ -6,7 +6,7 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:34:25 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/07 15:04:31 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/09 09:23:12 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ typedef struct s_stack {
  * @return A pointer to a stack structure. NULL if an error occurs
  */
 t_stack	*init_stack(size_t size);
+
+/**
+ * Pushes n at the top of stack.
+ *
+ * @param stack A pointer to a stack structure
+ * @param n The integer to push at the top of the stack
+ */
+void	push_stack(t_stack *stack, int n);
+
+/*
+ * Pops the element at the top of stack.
+ *
+ * @param A pointer to a non-empty stack structure
+ * @return The integer popped from the stack.
+ * If the given stack is empty, the return value is undefined.
+ */
+int		pop_stack(t_stack *stack);
 
 /**
  * Frees a stack structure.
