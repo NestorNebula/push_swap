@@ -20,12 +20,27 @@ int	test_valid_args(const char **args, size_t args_size,
 	return (errors);
 }
 
-int	test_invalid_args(const char **args, size_t args_size, const char *test)
+int	test_invalid_args(const char **args, size_t args_size,
+		bool fail_on_first_call, const char *test)
 {
-	int	errors;
+	int		errors;
+	t_stack	*stack;
+	size_t	size;
 
 	errors = 0;
-	errors += expect_eq_int(parse_args(args, args_size, NULL), 0, test);
+	if (fail_on_first_call)
+		errors += expect_eq_int(parse_args(args, args_size, NULL), 0, test);
+	else
+	{
+		size = parse_args(args, args_size, NULL);
+		errors += expect_false(size == 0,
+			"parse_args (works on first call for invalid args)");
+		stack = init_stack(size);
+		errors += expect_eq_int(parse_args(args, args_size, stack), 0,
+			"parse_args (fails on second call for invalid args)");
+		free_stack(stack);
+		expect_true(errors == 0, test);
+	}
 	return (errors);
 }
 
@@ -49,13 +64,13 @@ int	main(void)
 	errors += test_valid_args((const char *[]){"+10"}, 1,
 			(int[]){10}, 1,
 			"parse_args (works for positive numbers with a +)");
-	errors += test_invalid_args((const char *[]){"1", "two", "3"}, 3,
+	errors += test_invalid_args((const char *[]){"1", "two", "3"}, 3, true,
 			"parse_args (refuse non-number arguments)");
-	errors += test_invalid_args((const char *[]){"2147483648"}, 1,
+	errors += test_invalid_args((const char *[]){"2147483648"}, 1, true,
 			"parse_args (refuse overflowing numbers)");
-	errors += test_invalid_args((const char *[]){"-2147483649"}, 1,
+	errors += test_invalid_args((const char *[]){"-2147483649"}, 1, true,
 			"parse_args (refuse underflowing numbers)");
-	errors += test_invalid_args((const char *[]){"1 2 3 3 4 5"}, 6,
+	errors += test_invalid_args((const char *[]){"1 2 3 3 4 5"}, 1, false,
 			"parse_args (refuse duplicates)");
 	if (errors == 0)
 		ft_printf("\nparse_args: Success\n");
