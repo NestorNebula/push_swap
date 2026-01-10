@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef STACK_H
+#define STACK_H
 
 #include <stddef.h>
 #include <stdint.h>
