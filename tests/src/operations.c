@@ -1,8 +1,6 @@
-#include <stdlib.h>
 #include "libft.h"
 #include "libtests.h"
 #include "parse.h"
-#include "stack.h"
 #include "operations.h"
 
 
@@ -47,18 +45,65 @@ void	test_op_push(void)
 	t_stack	*dest_stack;
 
 	errors = 0;
-	src_stack = init_test_stack("op_push (stack initialization error)");
-	dest_stack = init_test_stack("op_push(stack initialization error)");
+	src_stack = init_test_stack("op_push (src_stack initialization error)");
+	dest_stack = init_test_stack("op_push (dest_stack initialization error)");
 	dest_stack->content[dest_stack->top - 1]--;
 	expected = dest_stack->content[dest_stack->top - 1];
 	op_push(src_stack, dest_stack);
 	errors += expect_eq_int(dest_stack->content[dest_stack->top - 1], expected,
 		"op_push (does nothing when dest_stack is full)");
+	dest_stack->top--;
+	expected = src_stack->content[src_stack->top - 1];
+	op_push(src_stack, dest_stack);
+	errors += expect_eq_int(dest_stack->content[dest_stack->top - 1], expected,
+		"op_push (pushes number from src_stack to dest_stack)");
+	errors += expect_eq_int(src_stack->content[src_stack->top - 1], expected - 1,
+		"op_push (pops src_stack top element)");
+	if (errors == 0)
+		ft_printf("\nop_push: Success\n");
 	free_stack(src_stack);
 	free_stack(dest_stack);
 }
 
+void	test_op_rotate(void)
+{
+	int		errors;
+	t_stack	*stack;
+
+	errors = 0;
+	stack = init_test_stack("op_rotate (stack initialization error)");
+	op_rotate(stack);
+	errors += expect_eq_int(stack->content[stack->top - 1], SIZE - 1,
+		"op_rotate (shifts up all elements of the stack by 1)");
+	errors += expect_eq_int(stack->content[stack->bottom], SIZE,
+		"op_rotate (puts first element to the bottom of the stack)");
+	if (errors == 0)
+		ft_printf("\nop_rotate: Success\n");
+	free_stack(stack);
+}
+
+void	test_op_reverse_rotate(void)
+{
+	int		errors;
+	t_stack	*stack;
+
+	errors = 0;
+	stack = init_test_stack("op_reverse_rotate (stack initialization error)");
+	op_reverse_rotate(stack);
+	errors +=  expect_eq_int(stack->content[stack->bottom], 2,
+		"op_reverse_rotate (shifts down all elements of the stack by 1)");
+	errors += expect_eq_int(stack->content[stack->top - 1], 1,
+		"op_reverse_rotate (puts last element to the top of the stack)");
+	if (errors == 0)
+		ft_printf("\nop_reverse_rotate: Success\n");
+	free_stack(stack);
+}
+
 int	main(void)
 {
+	test_op_swap();
+	test_op_push();
+	test_op_rotate();
+	test_op_reverse_rotate();
 	return (0);
 }
