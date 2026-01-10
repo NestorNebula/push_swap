@@ -2,7 +2,7 @@ TESTS_DIR = src
 
 TESTS_M = 
 TESTS_B = 
-TESTS_F = $(TESTS_DIR)/stack.c $(TESTS_DIR)/parse.c
+TESTS_F = $(TESTS_DIR)/stack.c $(TESTS_DIR)/parse.c $(TESTS_DIR)/operations.c
 
 TESTS = $(TESTS_M) $(TESTS_B) $(TESTS_F)
 
