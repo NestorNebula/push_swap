@@ -142,6 +142,78 @@ void	test_is_sorted_stack(void)
 		ft_printf("\nis_sorted_stack: Success\n");
 }
 
+void	test_find_maximum_smaller(void)
+{
+	int		errors;
+	t_stack	*stack;
+	
+	errors = 0;
+	stack = init_stack(SIZE);
+	expect_not_null(stack,
+		"find_maximum_smaller (stack initialization error)");
+	(void) parse_args(ARGS, SIZE, stack);
+	errors += expect_eq_int(find_maximum_smaller(stack, SIZE), SIZE - 2,
+		"find_maximum_smaller (returns index of the maximum smaller)");
+	errors += expect_eq_int(find_maximum_smaller(stack, -1), SIZE - 1,
+		"find_maximum_smaller (returns index of the maximum number when "
+		"n is smaller than every number in the stack)");
+	free_stack(stack);
+	if (errors == 0)
+		ft_printf("\nfind_maximum_smaller: Success\n");
+}
+
+void	test_find_minimum_bigger(void)
+{
+	int		errors;
+	t_stack	*stack;
+	
+	errors = 0;
+	stack = init_stack(SIZE);
+	expect_not_null(stack,
+		"find_minimum_bigger (stack initialization error)");
+	(void) parse_args(ARGS, SIZE, stack);
+	errors += expect_eq_int(find_minimum_bigger(stack, SIZE - 1), SIZE - 1,
+		"find_minimum_bigger (returns index of the minimum bigger)");
+	errors += expect_eq_int(find_minimum_bigger(stack, SIZE + 1), 0,
+		"find_minimum_bigger (returns index of the minimum number when "
+		"n is bigger than every number in the stack)");
+	free_stack(stack);
+	if (errors == 0)
+		ft_printf("\nfind_minimum_bigger: Success\n");
+}
+
+void	test_gap_to_top(void)
+{
+	int		errors;
+	t_stack	*stack;
+	
+	errors = 0;
+	stack = init_stack(SIZE);
+	expect_not_null(stack,
+		"gap_to_top (stack initialization error)");
+	(void) parse_args(ARGS, SIZE, stack);
+	errors += expect_eq_int(gap_to_top(stack, SIZE - 2, false), 1,
+		"gap_to_top (returns gap to top for index between top and bottom)");
+	errors += expect_eq_int(gap_to_top(stack, SIZE - 2, true), 1,
+		"gap_to_top (do not go down the stack when going up is faster)");
+	errors += expect_eq_int(gap_to_top(stack, stack->bottom + 1, false), SIZE - 2,
+		"gap_to_top (returns gap to top for index between top and bottom)");
+	errors += expect_eq_int(gap_to_top(stack, stack->bottom + 1, true), -2,
+		"gap_to_top (go down the stack when going up is longer)");
+	errors += expect_eq_int(gap_to_top(stack, stack->bottom, false), SIZE - 1,
+		"gap_to_top (returns gap to top for bottom)");
+	errors += expect_eq_int(gap_to_top(stack, stack->bottom, true), -1,
+		"gap_to_top (returns minus one for bottom when going down is allowed)");
+	errors += expect_eq_int(gap_to_top(stack, stack->top - 1, false), 0,
+		"gap_to_top (returns zero for element on top of stack)");
+	errors += expect_eq_int(gap_to_top(stack, stack->top - 1, true), 0,
+		"gap_to_top (returns zero for element on top of stack even when"
+		"going down is allowed)");
+	free_stack(stack);
+	if (errors == 0)
+		ft_printf("\ngap_to_top: Success\n");
+}
+
 int		main(void)
 {
     test_init_stack();
@@ -149,5 +221,8 @@ int		main(void)
 	test_pop_stack();
 	test_get_stack_len();
 	test_is_sorted_stack();
+	test_find_maximum_smaller();
+	test_find_minimum_bigger();
+	test_gap_to_top();
 	return (0);
 }
