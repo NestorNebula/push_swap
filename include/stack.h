@@ -70,6 +70,43 @@ uint64_t	get_stack_len(t_stack *stack);
 bool		is_sorted_stack(t_stack *stack, bool asc);
 
 /**
+ * Searches for the maximum number in a stack that is
+ * smaller than a given number.
+ * If every number in the stack is bigger than the given number,
+ * searches for the maximum number.
+ *
+ * @param stack A pointer to a stack structure
+ * @param n The number against which the stack's numbers will be compared
+ * @return The index of the result number
+ */
+uint64_t	find_maximum_smaller(t_stack *stack, int n);
+
+/**
+ * Searches for the minimum number in a stack that is
+ * bigger than a given number.
+ * If every number in the stack is smaller than the given number,
+ * searches for the minimum number.
+ *
+ * @param stack A pointer to a stack structure
+ * @param n The number against which the stack's numbers will be compared
+ * @return The index of the result number
+ */
+uint64_t	find_minimum_bigger(t_stack *stack, int n);
+
+/**
+ * Computes the number of elements in the stack separing
+ * an element at a certain index from the top of the stack.
+ *
+ * @param stack A pointer to a stack structure
+ * @param index The index of an element in the stack
+ * @param allow_bottom If true, the function will return a negative value
+ * corresponding to the gap to the top if by going down instead of up.
+ * A negative value will be returned only if the gap is closest by going down
+ * @return The gap to the top of the stack for the given index
+ */
+int			gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom);
+
+/**
  * Frees a stack structure.
  *
  * @param stack A pointer to a stack structure
