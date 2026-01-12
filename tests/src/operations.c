@@ -57,7 +57,7 @@ void	test_op_push(void)
 	op_push(src_stack, dest_stack);
 	errors += expect_eq_int(dest_stack->content[dest_stack->top - 1], expected,
 		"op_push (pushes number from src_stack to dest_stack)");
-	errors += expect_eq_int(src_stack->content[src_stack->top - 1], expected - 1,
+	errors += expect_eq_int(src_stack->content[src_stack->top - 1], expected + 1,
 		"op_push (pops src_stack top element)");
 	if (errors == 0)
 		ft_printf("\nop_push: Success\n");
@@ -73,9 +73,9 @@ void	test_op_rotate(void)
 	errors = 0;
 	stack = init_test_stack("op_rotate (stack initialization error)");
 	op_rotate(stack);
-	errors += expect_eq_int(stack->content[stack->top - 1], SIZE - 1,
+	errors += expect_eq_int(stack->content[stack->top - 1], 2,
 		"op_rotate (shifts up all elements of the stack by 1)");
-	errors += expect_eq_int(stack->content[stack->bottom], SIZE,
+	errors += expect_eq_int(stack->content[stack->bottom], 1,
 		"op_rotate (puts first element to the bottom of the stack)");
 	if (errors == 0)
 		ft_printf("\nop_rotate: Success\n");
@@ -90,9 +90,9 @@ void	test_op_reverse_rotate(void)
 	errors = 0;
 	stack = init_test_stack("op_reverse_rotate (stack initialization error)");
 	op_reverse_rotate(stack);
-	errors +=  expect_eq_int(stack->content[stack->bottom], 2,
+	errors +=  expect_eq_int(stack->content[stack->bottom], SIZE - 1,
 		"op_reverse_rotate (shifts down all elements of the stack by 1)");
-	errors += expect_eq_int(stack->content[stack->top - 1], 1,
+	errors += expect_eq_int(stack->content[stack->top - 1], SIZE,
 		"op_reverse_rotate (puts last element to the top of the stack)");
 	if (errors == 0)
 		ft_printf("\nop_reverse_rotate: Success\n");
