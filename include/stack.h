@@ -6,13 +6,14 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:34:25 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/09 09:57:54 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:32:57 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 #define STACK_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -57,6 +58,16 @@ int			pop_stack(t_stack *stack);
  * @return The number of integers stored in the stack
  */
 uint64_t	get_stack_len(t_stack *stack);
+
+/**
+ * Checks that a stack is sorted.
+ *
+ * @param stack A pointer to a stack structure
+ * @param asc If set to true, the order checked will be ascending,
+ * else descending.
+ * @return True if the stack is sorted, false otherwise
+ */
+bool		is_sorted_stack(t_stack *stack, bool asc);
 
 /**
  * Frees a stack structure.
