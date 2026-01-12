@@ -100,7 +100,7 @@ uint64_t	find_minimum_bigger(t_stack *stack, int n);
  * @param stack A pointer to a stack structure
  * @param index The index of an element in the stack
  * @param allow_bottom If true, the function will return a negative value
- * corresponding to the gap to the top if by going down instead of up.
+ * corresponding to the gap to the top by going down instead of up.
  * A negative value will be returned only if the gap is closest by going down
  * @return The gap to the top of the stack for the given index
  */
