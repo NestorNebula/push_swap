@@ -6,7 +6,7 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 08:51:02 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/09 11:24:48 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:27:20 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,6 @@ int			pop_stack(t_stack *stack)
 	if (stack->top == 0)
 		stack->top = stack->size;
 	return (stack->content[--stack->top]);
-}
-
-uint64_t	get_stack_len(t_stack *stack)
-{
-	uint64_t	top;
-	
-	if (stack == NULL)
-		return (0);
-	top = stack->top;
-	if (top < stack->bottom)
-		top += stack->size;
-	return (top - stack->bottom);
 }
 
 void	free_stack(t_stack *stack)
