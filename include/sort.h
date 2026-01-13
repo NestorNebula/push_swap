@@ -15,6 +15,12 @@
 
 #include "stack.h"
 
+typedef struct s_operations {
+	int	src_stack_ops;
+	int dest_stack_ops;
+	int sum;
+}				t_operations;
+
 /**
  * Sorts first stack using second stack and allowed operations.
  *
