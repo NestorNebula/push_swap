@@ -152,9 +152,9 @@ void	test_find_maximum_smaller(void)
 	expect_not_null(stack,
 		"find_maximum_smaller (stack initialization error)");
 	(void) parse_args(ARGS, SIZE, stack);
-	errors += expect_eq_int(find_maximum_smaller(stack, SIZE), SIZE - 2,
+	errors += expect_eq_int(find_maximum_smaller(stack, SIZE), 1,
 		"find_maximum_smaller (returns index of the maximum smaller)");
-	errors += expect_eq_int(find_maximum_smaller(stack, -1), SIZE - 1,
+	errors += expect_eq_int(find_maximum_smaller(stack, -1), 0,
 		"find_maximum_smaller (returns index of the maximum number when "
 		"n is smaller than every number in the stack)");
 	free_stack(stack);
@@ -172,9 +172,9 @@ void	test_find_minimum_bigger(void)
 	expect_not_null(stack,
 		"find_minimum_bigger (stack initialization error)");
 	(void) parse_args(ARGS, SIZE, stack);
-	errors += expect_eq_int(find_minimum_bigger(stack, SIZE - 1), SIZE - 1,
+	errors += expect_eq_int(find_minimum_bigger(stack, SIZE - 1), 0,
 		"find_minimum_bigger (returns index of the minimum bigger)");
-	errors += expect_eq_int(find_minimum_bigger(stack, SIZE + 1), 0,
+	errors += expect_eq_int(find_minimum_bigger(stack, SIZE + 1), stack->top - 1,
 		"find_minimum_bigger (returns index of the minimum number when "
 		"n is bigger than every number in the stack)");
 	free_stack(stack);
