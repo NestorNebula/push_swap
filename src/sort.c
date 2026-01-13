@@ -6,7 +6,7 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:52:56 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/13 12:29:07 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:39:31 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ static t_operations	find_minimum_operations(uint64_t index,
 static t_operations	find_best_operations(t_stack *src_stack,
 		t_stack *dest_stack, bool asc);
 
-void	sort(t_stack *stack_a, t_stack *stack_b);
+void	sort(t_stack *stack_a, t_stack *stack_b)
+{
+	// If sorted or size a == 1, do nothing
+	// If size equals to 2, swap numbers if needs be
+	// Push numbers to stack b until size a == 3
+	// Sort stack a
+	// Push numbers to stack a until size b == 0
+	// Rotate stack a until sorted
+}
 
 static void			handle_three_cases(t_stack *stack,
 		uint64_t b, uint64_t m, uint64_t t)
