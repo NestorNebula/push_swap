@@ -2,6 +2,59 @@
 #include "libtests.h"
 #include "sort.h"
 #include "parse.h"
+#include <stdint.h>
+#include <stdlib.h>
+
+static void print_tab(const int *tab, size_t tab_len)
+{
+	size_t	i;
+
+	i = 0;
+	ft_printf("-------------------\n");
+	while (i < tab_len)
+		ft_printf("%d\n", tab[i++]);
+	ft_printf("-------------------\n");
+}
+
+
+static void	print_stack(t_stack *stack)
+{
+	uint64_t	i;
+
+	i = stack->bottom;
+	if (stack->top == 0)
+		stack->top = stack->size;
+	ft_printf("-------------------\n");
+	while (i != stack->top)
+	{
+		if (i == stack->size)
+			i = 0;
+		ft_printf("%d\n", stack->content[i++]);
+	}
+	ft_printf("-------------------\n");
+}
+
+static int	*get_stack_copy(t_stack *stack)
+{
+	int			*copy;
+	uint64_t	pos;
+	uint64_t	i;
+	
+	copy = malloc(sizeof(int) * get_stack_len(stack));
+	if (copy == NULL)
+		return (NULL);
+	if (stack->top == 0)
+		stack->top = stack->size;
+	pos = stack->bottom;
+	i = 0;
+	while (pos != stack->top)
+	{
+		if (pos == stack->size)
+			pos = 0;
+		copy[i++] = stack->content[pos++];
+	}
+	return (copy);
+}
 
 
 int	test_sort(const char **args, size_t args_len,
@@ -10,7 +63,9 @@ int	test_sort(const char **args, size_t args_len,
 	int		errors;
 	t_stack *stack_a;
 	t_stack *stack_b;
+	int		*stack_copy;
 	
+	ft_printf("Test\n");
 	errors = 0;
 	stack_a = init_stack(sorted_len);
 	errors += expect_not_null(stack_a, "sort (stack_a initialization error)");
@@ -18,8 +73,16 @@ int	test_sort(const char **args, size_t args_len,
 	errors += expect_not_null(stack_b, "sort (stack_b initialization error)");
 	(void) parse_args(args, args_len, stack_a);
 	sort(stack_a, stack_b);
-	errors += expect_true(ft_memcmp(stack_a->content, sorted,
+	stack_copy = get_stack_copy(stack_a);
+	errors += expect_not_null(stack_copy,
+		"sort (stack_copy initialization error)");
+	errors += expect_true(ft_memcmp(stack_copy, sorted,
 			sizeof(int) * sorted_len) == 0, test);
+	ft_printf("Expected stack:\n");
+	print_tab(sorted, sorted_len);
+	ft_printf("Got:\n");
+	print_stack(stack_a);
+	free(stack_copy);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (errors);
