@@ -20,16 +20,19 @@ static void print_tab(const int *tab, size_t tab_len)
 static void	print_stack(t_stack *stack)
 {
 	uint64_t	i;
+	uint64_t	index;
 
-	i = stack->bottom;
 	if (stack->top == 0)
 		stack->top = stack->size;
 	ft_printf("-------------------\n");
-	while (i != stack->top)
+	i = 0;
+	while (i < stack->len)
 	{
-		if (i == stack->size)
-			i = 0;
-		ft_printf("%d\n", stack->content[i++]);
+		index = stack->bottom + i;
+		if (index >= stack->size)
+			index -= stack->size;
+		ft_printf("%d\n", stack->content[index]);
+		i++;
 	}
 	ft_printf("-------------------\n");
 }
