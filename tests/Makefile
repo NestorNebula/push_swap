@@ -47,7 +47,9 @@ INCLUDE_DIR = $(ROOT_DIR)/include
 SRC_DIR = $(ROOT_DIR)/src
 
 SRC = $(SRC_DIR)/stack.c $(SRC_DIR)/stack-helpers.c $(SRC_DIR)/parse.c \
-	  $(SRC_DIR)/operations.c
+	  $(SRC_DIR)/operations.c $(SRC_DIR)/sort.c $(SRC_DIR)/sort-operations.c \
+	  $(SRC_DIR)/sort-helpers.c $(SRC_DIR)/do-operations.c  \
+	  $(SRC_DIR)/sort-special-cases.c
 
 OBJ = $(SRC:.c=.o)
 
