@@ -6,21 +6,37 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:25:41 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/14 08:26:58 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/14 08:34:58 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 #include "sort.h"
+#include "stack.h"
 
 static void			handle_three_cases(t_stack *stack,
 		uint64_t b, uint64_t m, uint64_t t);
+
+void			sort_two(t_stack *stack)
+{
+	uint64_t	top;
+
+	if (stack == NULL || get_stack_len(stack) != 2)
+		return ;
+	top = stack->top - 1;
+	if (stack->top == 0)
+		top = stack->size - 1;
+	if (stack->content[stack->bottom] < stack->content[top])
+		do_stack_op(stack, op_swap, "sa");
+}
 
 void	sort_three(t_stack *stack)
 {
 	uint64_t	middle;
 	uint64_t	top;
 
+	if (stack == NULL || get_stack_len(stack) != 3)
+		return ;
 	middle = stack->bottom + 1;
 	if (middle == stack->size)
 		middle = 0;
