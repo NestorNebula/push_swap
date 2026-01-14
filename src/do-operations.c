@@ -61,17 +61,17 @@ static void		do_common_operations(t_stack *src_stack, t_stack *dest_stack,
 static void		do_individual_operations(t_stack *stack,
 		const char *stack_char, int ops)
 {
-	char	op_str[OPS_STR_LEN];
+	char	op_str[OPS_STR_LEN + 1];
 
-	ft_strlcpy(op_str, "r", OPS_STR_LEN);
-	ft_strlcat(op_str, stack_char, OPS_STR_LEN);
+	ft_strlcpy(op_str, "r", OPS_STR_LEN + 1);
+	ft_strlcat(op_str, stack_char, OPS_STR_LEN + 1);
 	while (ops > 0)
 	{
 		do_stack_op(stack, op_rotate, op_str);
 		ops--;
 	}
-	ft_strlcpy(op_str, "rr", OPS_STR_LEN);
-	ft_strlcat(op_str, stack_char, OPS_STR_LEN);
+	ft_strlcpy(op_str, "rr", OPS_STR_LEN + 1);
+	ft_strlcat(op_str, stack_char, OPS_STR_LEN + 1);
 	while (ops < 0)
 	{
 		do_stack_op(stack, op_reverse_rotate, op_str);
