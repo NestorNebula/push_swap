@@ -18,7 +18,7 @@ void	op_swap(t_stack *stack)
 	int	*swap[2];
 	int	tmp;
 
-	if (stack == NULL || get_stack_len(stack) < 2)
+	if (stack == NULL || stack->len < 2)
 		return ;
 	if (stack->top > 0)
 		swap[0] = stack->content + stack->top - 1;
@@ -37,7 +37,7 @@ void	op_push(t_stack *src_stack, t_stack *dest_stack)
 {
 	int	n;
 
-	if (src_stack == NULL || dest_stack == NULL || get_stack_len(src_stack) == 0)
+	if (src_stack == NULL || dest_stack == NULL || src_stack->len == 0)
 		return ;
 	n = pop_stack(src_stack);
 	push_stack(dest_stack, n);
@@ -45,15 +45,15 @@ void	op_push(t_stack *src_stack, t_stack *dest_stack)
 
 void	op_rotate(t_stack *stack)
 {
-	if (stack == NULL || get_stack_len(stack) < 2)
+	if (stack == NULL || stack->len < 2)
 		return ;
 	if (stack->top == 0)
 		stack->top = stack->size;
-	if (get_stack_len(stack) < stack->size)
+	if (stack->len < stack->size)
 	{
 		if (stack->bottom == 0)
 			stack->bottom = stack->size;
-		stack->content[--stack->bottom] = stack->content[stack->top--];
+		stack->content[--stack->bottom] = stack->content[--stack->top];
 	}
 	else
 		stack->bottom = --stack->top;
@@ -61,9 +61,9 @@ void	op_rotate(t_stack *stack)
 
 void	op_reverse_rotate(t_stack *stack)
 {
-	if (stack == NULL || get_stack_len(stack) < 2)
+	if (stack == NULL || stack->len < 2)
 		return ;
-	if (get_stack_len(stack) < stack->size)
+	if (stack->len < stack->size)
 	{
 		if (stack->top == stack->size)
 			stack->top = 0;

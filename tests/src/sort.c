@@ -40,7 +40,7 @@ static int	*get_stack_copy(t_stack *stack)
 	uint64_t	pos;
 	uint64_t	i;
 	
-	copy = malloc(sizeof(int) * get_stack_len(stack));
+	copy = malloc(sizeof(int) * stack->len);
 	if (copy == NULL)
 		return (NULL);
 	if (stack->top == 0)

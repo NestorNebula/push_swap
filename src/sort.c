@@ -19,36 +19,31 @@ static void	set_min_to_top(t_stack *stack);
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
-	uint64_t		stack_len;
 	t_operations	ops;
 
 	// If sorted or size a == 1, do nothing
 	if (stack_a == NULL || stack_b == NULL || is_sorted_stack(stack_a, true))
 		return ;
-	stack_len = get_stack_len(stack_a);
-	if (stack_len <= 1)
+	if (stack_a->len <= 1)
 		return ;
 	// If size equals to 2, swap numbers if needs be
-	if (stack_len == 2)
+	if (stack_a->len == 2)
 		sort_two(stack_a);
 	else
 	{
 		// Push numbers to stack b until size a == 3
-		while (stack_len > 3)
+		while (stack_a->len > 3)
 		{
 			ops = find_best_operations(stack_a, stack_b, false);
 			do_operations(stack_a, stack_b, &ops, false);
-			stack_len--;
 		}
 		// Sort stack a
 		sort_three(stack_a);
-		stack_len = get_stack_len(stack_b);
 		// Push numbers to stack a until size b == 0 while (stack_len > 0)
-		while (stack_len > 0)
+		while (stack_b->len > 0)
 		{
 			ops = find_best_operations(stack_b, stack_a, true);
 			do_operations(stack_b, stack_a, &ops, true);
-			stack_len--;
 		}
 		// Rotate stack a until sorted
 		set_min_to_top(stack_a);

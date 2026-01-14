@@ -83,39 +83,6 @@ void	test_pop_stack(void)
 		ft_printf("\npop_stack: Success\n");
 }
 
-void	test_get_stack_len(void)
-{
-	int		errors;
-	t_stack	*stack;
-	size_t	i;
-
-	errors = 0;
-	stack = init_stack(SIZE);
-	errors += expect_not_null(stack,
-		"get_stack_len (stack initialization error)");
-	errors += expect_eq_int(get_stack_len(stack), 0,
-		"get_stack_len (returns 0 when stack is empty)");
-	(void) parse_args(ARGS, SIZE, stack);
-	errors += expect_eq_int(get_stack_len(stack), SIZE,
-		"get_stack_len (returns number of integers currently in the stack)");
-	i = SIZE;
-	while (i > 0)
-	{
-		(void) pop_stack(stack);
-		errors += expect_eq_int(get_stack_len(stack), --i,
-			"get_stack_len (returns correct value after successful pop)");
-	}
-	while (i < SIZE)
-	{
-		push_stack(stack, i + 1);
-		errors += expect_eq_int(get_stack_len(stack), ++i,
-			"get_stack_len (returns correct value after successful push)");
-	}
-	free_stack(stack);
-	if (errors == 0)
-		ft_printf("\nget_stack_len: Success\n");
-}
-
 void	test_is_sorted_stack(void)
 {
 	int		errors;
@@ -223,7 +190,6 @@ int		main(void)
     test_init_stack();
 	test_push_stack();
 	test_pop_stack();
-	test_get_stack_len();
 	test_is_sorted_stack();
 	test_find_maximum_smaller();
 	test_find_minimum_bigger();

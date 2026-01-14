@@ -12,7 +12,7 @@
 
 #include "stack.h"
 
-uint64_t	get_stack_len(t_stack *stack)
+/* uint64_t	get_stack_len(t_stack *stack)
 {
 	uint64_t	top;
 	
@@ -22,7 +22,7 @@ uint64_t	get_stack_len(t_stack *stack)
 	if (top < stack->bottom)
 		top += stack->size;
 	return (top - stack->bottom);
-}
+} */
 
 bool		is_sorted_stack(t_stack *stack, bool asc)
 {
@@ -56,7 +56,7 @@ uint64_t	find_maximum_smaller(t_stack *stack, int n)
 	int			*max_smaller;
 	uint64_t	i;
 
-	if (stack == NULL || get_stack_len(stack) == 0)
+	if (stack == NULL || stack->len == 0)
 		return (0);
 	if (stack->top == 0)
 		stack->top = stack->size;
@@ -85,7 +85,7 @@ uint64_t	find_minimum_bigger(t_stack *stack, int n)
 	int			*min_bigger;
 	uint64_t	i;
 
-	if (stack == NULL || get_stack_len(stack) == 0)
+	if (stack == NULL || stack->len == 0)
 		return (0);
 	if (stack->top == 0)
 		stack->top = stack->size;
@@ -113,7 +113,7 @@ int			gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom)
 	uint64_t	v_index;
 	uint64_t	v_top_index;
 
-	if (stack == NULL || get_stack_len(stack) == 0)
+	if (stack == NULL || stack->len == 0)
 		return (0);
 	v_index = index;
 	if (index < stack->bottom)

@@ -21,7 +21,7 @@ void			sort_two(t_stack *stack)
 {
 	uint64_t	top;
 
-	if (stack == NULL || get_stack_len(stack) != 2)
+	if (stack == NULL || stack->len != 2)
 		return ;
 	top = stack->top - 1;
 	if (stack->top == 0)
@@ -35,7 +35,7 @@ void	sort_three(t_stack *stack)
 	uint64_t	middle;
 	uint64_t	top;
 
-	if (stack == NULL || get_stack_len(stack) != 3)
+	if (stack == NULL || stack->len != 3)
 		return ;
 	middle = stack->bottom + 1;
 	if (middle == stack->size)

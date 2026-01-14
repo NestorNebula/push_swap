@@ -53,14 +53,6 @@ void		push_stack(t_stack *stack, int n);
 int			pop_stack(t_stack *stack);
 
 /**
- * Computes the number of integers currently stored in a stack.
- *
- * @param stack A pointer to a stack structure
- * @return The number of integers stored in the stack
- */
-uint64_t	get_stack_len(t_stack *stack);
-
-/**
  * Checks that a stack is sorted.
  *
  * @param stack A pointer to a stack structure
