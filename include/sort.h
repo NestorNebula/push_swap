@@ -28,7 +28,14 @@ typedef struct s_operations {
  * @param stack_b An empty stack that can be used during the sorting process
  * If this stack isn't empty, the result of calling the function is undefined
  */
-void	sort(t_stack *stack_a, t_stack *stack_b);
+void			sort(t_stack *stack_a, t_stack *stack_b);
+
+t_operations	find_minimum_operations(uint64_t index,
+		t_stack *src_stack, t_stack *dest_stack, bool asc);
+
+t_operations	find_best_operations(t_stack *src_stack,
+		t_stack *dest_stack, bool asc);
+
 
 /**
  * Calls an operation function on a stack structure,
@@ -38,7 +45,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
  * @param op A pointer to an operation function
  * @param op_str The string that will be printed after operation execution
  */
-void	do_stack_op(t_stack *stack,
+void			do_stack_op(t_stack *stack,
 		void (*op)(t_stack *), const char *op_str);
 
 /**
@@ -50,7 +57,7 @@ void	do_stack_op(t_stack *stack,
  * @param op A pointer to an operation function
  * @param op_str The string that will be printed after operation executions
  */
-void	do_both_stack_op(t_stack *stack_a, t_stack *stack_b,
+void			do_both_stack_op(t_stack *stack_a, t_stack *stack_b,
 		void (*op)(t_stack *), const char *op_str);
 
 /**
@@ -62,7 +69,7 @@ void	do_both_stack_op(t_stack *stack_a, t_stack *stack_b,
  * @param push A pointer to a push operation function
  * @param op_str The string that will be printed after operation execution
  */
-void	do_push(t_stack *src_stack, t_stack *dest_stack,
+void			do_push(t_stack *src_stack, t_stack *dest_stack,
 		void (*push)(t_stack *, t_stack *), const char *op_str);
 
 #endif // !SORT_H
