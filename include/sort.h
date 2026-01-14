@@ -6,7 +6,7 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:12:01 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/12 12:25:19 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/14 08:24:27 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,22 @@ typedef struct s_operations {
  * If this stack isn't empty, the result of calling the function is undefined
  */
 void			sort(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * Sorts a stack with exactly two elements inside of it.
+ *
+ * @param A stack of size two.
+ * Every stack with another size will remain unsorted
+ */
+void			sort_two(t_stack *stack);
+
+/**
+ * Sorts a stack with exactly three elements inside of it.
+ *
+ * @param A stack of size three.
+ * Every stack with another size will remain unsorted
+ */
+void			sort_three(t_stack *stack);
 
 /**
  * Finds the minimum number of operations to move an element
