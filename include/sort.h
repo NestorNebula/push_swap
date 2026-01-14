@@ -30,11 +30,44 @@ typedef struct s_operations {
  */
 void			sort(t_stack *stack_a, t_stack *stack_b);
 
+/**
+ * Finds the minimum number of operations to move an element
+ * from a source stack to a destination stack.
+ *
+ * @param index The index of the element to move in the source stack
+ * @param src_stack The source stack
+ * @param dest_stack The destination stack
+ * @bool asc True if the destination stack is sorted in ascending order,
+ * false otherwise
+ * @return An operations structure
+ */
 t_operations	find_minimum_operations(uint64_t index,
 		t_stack *src_stack, t_stack *dest_stack, bool asc);
 
+/**
+ * Finds the element with the smallest number of operations to be moved
+ * from a source stack to a destination stack.
+ *
+ * @param src_stack The source stack
+ * @param dest_stack The destination stack
+ * @param asc True if the destination stack is sorted in ascending order,
+ * false otherwise
+ * @return An operations structure
+ */
 t_operations	find_best_operations(t_stack *src_stack,
 		t_stack *dest_stack, bool asc);
+
+/**
+ * Executes the given operations on a source stack and a destination stack.
+ *
+ * @param src_stack The source stack
+ * @param dest_stack The destination stack
+ * @param ops A pointer to an operations structure
+ * @param asc True if the destination stack is sorted in ascending order,
+ * false otherwise
+ */
+void			do_operations(t_stack *src_stack, t_stack *dest_stack,
+		t_operations *ops, bool asc);
 
 
 /**
