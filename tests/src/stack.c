@@ -46,12 +46,13 @@ void	test_push_stack(void)
 	errors += expect_eq_int(stack->content[stack->top - 1], 1,
 		"push_stack (left integer at the top unchanged on failed push)");
 	stack->top--;
+	stack->len--;
 	push_stack(stack, INT_TO_PUSH);
 	errors += expect_eq_int(stack->top, SIZE,
 		"push_stack (update stack top position on successful push)");
 	errors += expect_eq_int(stack->content[stack->top - 1], INT_TO_PUSH,
 		"push_stack (push expected integer to stack)");
-	errors += expect_eq_int(stack->len, SIZE + 1,
+	errors += expect_eq_int(stack->len, SIZE,
 		"push_stack (update stack's length correctly)");
 	free_stack(stack);
 	if (errors == 0)
