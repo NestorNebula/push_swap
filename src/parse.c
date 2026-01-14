@@ -43,6 +43,8 @@ size_t	parse_args(const char **args, size_t args_size, t_stack *stack)
 	}
 	if (stack != NULL && !check_duplicates(stack))
 		return (0);
+	if (stack != NULL)
+		stack->len = count;
 	return (count);
 }
 
