@@ -20,6 +20,8 @@ void	test_init_stack(void)
 		"init_stack (inits stack's content)");
     errors += expect_eq_int(stack->size, SIZE,
 		"init_stack (sets stack's size to the given size)");
+	errors += expect_eq_int(stack->len, 0,
+		"init_stack (sets stack's length to 0)");
     errors += expect_eq_int(stack->top, 0,
 		"init_stack (sets stack's top to 0)");
     errors += expect_eq_int(stack->bottom, 0,
@@ -39,16 +41,18 @@ void	test_push_stack(void)
 	errors += expect_not_null(stack, "push_stack (stack initialization error)");
 	(void) parse_args(ARGS, SIZE, stack);
 	push_stack(stack, INT_TO_PUSH);
-	errors += expect_eq_int(get_stack_len(stack), SIZE,
+	errors += expect_eq_int(stack->top, SIZE,
 		"push_stack (does nothing when stack is full)");
 	errors += expect_eq_int(stack->content[stack->top - 1], 1,
 		"push_stack (left integer at the top unchanged on failed push)");
 	stack->top--;
 	push_stack(stack, INT_TO_PUSH);
-	errors += expect_eq_int(get_stack_len(stack), SIZE,
+	errors += expect_eq_int(stack->top, SIZE,
 		"push_stack (update stack top position on successful push)");
 	errors += expect_eq_int(stack->content[stack->top - 1], INT_TO_PUSH,
 		"push_stack (push expected integer to stack)");
+	errors += expect_eq_int(stack->len, SIZE + 1,
+		"push_stack (update stack's length correctly)");
 	free_stack(stack);
 	if (errors == 0)
 		ft_printf("\npush_stack: Success\n");
@@ -65,11 +69,11 @@ void	test_pop_stack(void)
 	errors += expect_not_null(stack, "pop_stack (stack initialization error)");
 	(void) parse_args(ARGS, SIZE, stack);
 	i = 0;
-	while (get_stack_len(stack) > 0)
+	while (stack->len > 0)
 	{
 		errors += expect_eq_int(pop_stack(stack), ++i,
 			"pop_stack (returns integer at the top of stack)");
-		errors += expect_eq_int(stack->top, get_stack_len(stack),
+		errors += expect_eq_int(stack->top, stack->len,
 			"pop_stack (updates stack top position on successful pop)");
 	}
 	(void) pop_stack(stack);
