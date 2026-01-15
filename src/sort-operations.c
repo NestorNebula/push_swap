@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "sort.h"
+#include <stdint.h>
 
 static int	abs(int n);
 
@@ -38,16 +39,16 @@ t_operations	find_best_operations(t_stack *src_stack,
 	t_operations	best_ops;
 	t_operations	ops;
 	uint64_t		i;
+	uint64_t		index;
 
-	i = src_stack->bottom;
-	if (src_stack->top == 0)
-		src_stack->top = src_stack->size;
+	i = 0;
 	best_ops.sum = src_stack->size + dest_stack->size;
-	while (i != src_stack->top)
+	while (i < src_stack->len)
 	{
-		if (i == src_stack->size)
-			i = 0;
-		ops = find_minimum_operations(i, src_stack, dest_stack, asc);
+		index = src_stack->bottom + i;
+		if (index >= src_stack->size)
+			index -= src_stack->size;
+		ops = find_minimum_operations(index, src_stack, dest_stack, asc);
 		if (ops.sum < best_ops.sum)
 			best_ops = ops;
 		i++;
