@@ -42,7 +42,7 @@ void	sort_three(t_stack *stack)
 		middle = 0;
 	top = stack->top - 1;
 	if (stack->top == 0)
-		middle = stack->size - 1;
+		top = stack->size - 1;
 	handle_three_cases(stack, stack->bottom, middle, top);
 }
 
