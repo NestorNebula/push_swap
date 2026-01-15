@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+/*
 static void print_tab(const int *tab, size_t tab_len)
 {
 	size_t	i;
@@ -36,6 +37,7 @@ static void	print_stack(t_stack *stack)
 	}
 	ft_printf("-------------------\n");
 }
+*/
 
 static int	*get_stack_copy(t_stack *stack)
 {
@@ -66,7 +68,6 @@ int	test_sort(const char **args, size_t args_len,
 	t_stack *stack_b;
 	int		*stack_copy;
 	
-	ft_printf("Test\n");
 	errors = 0;
 	stack_a = init_stack(sorted_len);
 	errors += expect_not_null(stack_a, "sort (stack_a initialization error)");
@@ -79,10 +80,11 @@ int	test_sort(const char **args, size_t args_len,
 		"sort (stack_copy initialization error)");
 	errors += expect_true(ft_memcmp(stack_copy, sorted,
 			sizeof(int) * sorted_len) == 0, test);
-	ft_printf("Expected stack:\n");
+	/* ft_printf("Expected stack:\n");
 	print_tab(sorted, sorted_len);
 	ft_printf("Got:\n");
 	print_stack(stack_a);
+	*/
 	free(stack_copy);
 	free_stack(stack_a);
 	free_stack(stack_b);
