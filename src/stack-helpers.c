@@ -55,23 +55,23 @@ uint64_t	find_maximum_smaller(t_stack *stack, int n)
 	int			*max;
 	int			*max_smaller;
 	uint64_t	i;
+	uint64_t	index;
 
 	if (stack == NULL || stack->len == 0)
 		return (0);
-	if (stack->top == 0)
-		stack->top = stack->size;
-	i = stack->bottom;
-	max = stack->content + i;
+	max = NULL;
 	max_smaller = NULL;
-	while (i != stack->top)
+	i = 0;
+	while (i < stack->len)
 	{
-		if (i == stack->size)
-			i = 0;
-		if (stack->content[i] > *max)
-			max = stack->content + i;
-		if (stack->content[i] < n
-			&& (max_smaller == NULL || stack->content[i] > *max_smaller))
-			max_smaller = stack->content + i;
+		index = stack->bottom + i;
+		if (index >= stack->size)
+			index -= stack->size;
+		if (max == NULL || stack->content[index] > *max)
+			max = stack->content + index;
+		if (stack->content[index] < n
+			&& (max_smaller == NULL || stack->content[index] > *max_smaller))
+			max_smaller = stack->content + index;
 		i++;
 	}
 	if (max_smaller != NULL)
@@ -84,23 +84,23 @@ uint64_t	find_minimum_bigger(t_stack *stack, int n)
 	int			*min;
 	int			*min_bigger;
 	uint64_t	i;
+	uint64_t	index;
 
 	if (stack == NULL || stack->len == 0)
 		return (0);
-	if (stack->top == 0)
-		stack->top = stack->size;
-	i = stack->bottom;
-	min = stack->content + i;
+	min = NULL;
 	min_bigger = NULL;
-	while (i != stack->top)
+	i = 0;
+	while (i < stack->len)
 	{
-		if (i == stack->size)
-			i = 0;
-		if (stack->content[i] < *min)
-			min = stack->content + i;
-		if (stack->content[i] > n
-			&& (min_bigger == NULL || stack->content[i] < *min_bigger))
-			min_bigger = stack->content + i;
+		index = stack->bottom + i;
+		if (index >= stack->size)
+			index -= stack->size;
+		if (min == NULL || stack->content[index] < *min)
+			min = stack->content + index;
+		if (stack->content[index] > n
+			&& (min_bigger == NULL || stack->content[index] < *min_bigger))
+			min_bigger = stack->content + index;
 		i++;
 	}
 	if (min_bigger != NULL)
@@ -119,7 +119,7 @@ int			gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom)
 	if (index < stack->bottom)
 		v_index = stack->size + index;
 	v_top_index = stack->top;
-	if (stack->top < stack->bottom)
+	if (stack->top <= stack->bottom)
 		v_top_index = stack->size + stack->top;
 	v_top_index--;
 	if (v_top_index - v_index < v_index - stack->bottom || !allow_bottom)
