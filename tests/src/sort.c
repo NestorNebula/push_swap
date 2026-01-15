@@ -40,21 +40,19 @@ static void	print_stack(t_stack *stack)
 static int	*get_stack_copy(t_stack *stack)
 {
 	int			*copy;
-	uint64_t	pos;
 	uint64_t	i;
+	uint64_t	index;
 	
 	copy = malloc(sizeof(int) * stack->len);
 	if (copy == NULL)
 		return (NULL);
-	if (stack->top == 0)
-		stack->top = stack->size;
-	pos = stack->bottom;
 	i = 0;
-	while (pos != stack->top)
+	while (i < stack->len)
 	{
-		if (pos == stack->size)
-			pos = 0;
-		copy[i++] = stack->content[pos++];
+		index = stack->bottom + i;
+		if (index >= stack->size)
+			index -= stack->size;
+		copy[i++] = stack->content[index++];
 	}
 	return (copy);
 }
