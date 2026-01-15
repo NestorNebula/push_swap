@@ -122,7 +122,7 @@ int			gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom)
 	if (stack->top <= stack->bottom)
 		v_top_index = stack->size + stack->top;
 	v_top_index--;
-	if (v_top_index - v_index < v_index - stack->bottom || !allow_bottom)
+	if (v_top_index - v_index <= v_index - stack->bottom || !allow_bottom)
 		return (v_top_index - v_index);
 	return (stack->bottom - v_index - 1);
 }
