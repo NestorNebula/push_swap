@@ -78,8 +78,8 @@ static int	get_ops_sum(t_operations *ops)
 	if (ops->src_stack_ops < 0 && ops->dest_stack_ops < 0)
 	{
 		if (ops->src_stack_ops < ops->dest_stack_ops)
-			return (ops->src_stack_ops);
-		return (ops->dest_stack_ops);
+			return (-(ops->src_stack_ops));
+		return (-(ops->dest_stack_ops));
 	}
 	return (abs(ops->src_stack_ops) + abs(ops->dest_stack_ops));
 }
