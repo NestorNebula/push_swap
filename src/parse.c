@@ -6,7 +6,7 @@
 /*   By: nhoussie <nhoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:40:01 by nhoussie          #+#    #+#             */
-/*   Updated: 2026/01/08 15:45:31 by nhoussie         ###   ########.fr       */
+/*   Updated: 2026/01/15 11:46:53 by nhoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,27 @@ size_t	parse_args(const char **args, size_t args_size, t_stack *stack)
 
 static bool	int_from_str(const char **str_ptr, int *int_ptr)
 {
-	long			tmp;
+	uint64_t		nbr;
+	int				tmp;
 	bool			is_negative;
 
-	tmp = 0;
+	nbr = 0;
 	is_negative = **str_ptr == '-';
 	if (**str_ptr == '-' || **str_ptr == '+')
 		(void)(*str_ptr)++;
+	if (**str_ptr == '\0')
+		return (false);
 	while (ft_isdigit(**str_ptr))
 	{
-		if (INT_MAX / 10 - (**str_ptr - '0') < tmp)
+		nbr = nbr * 10 + (**str_ptr - '0');
+		if ((!is_negative && nbr > INT_MAX)
+			|| (is_negative && nbr > (uint64_t) INT_MAX + 1))
 			return (false);
-		tmp = tmp * 10 + (**str_ptr - '0');
 		(void)(*str_ptr)++;
 	}
+	tmp = nbr;
 	if (is_negative)
-		tmp = -tmp;
+		tmp = -((int) nbr);
 	if (int_ptr != NULL)
 		*int_ptr = tmp;
 	return (**str_ptr == '\0' || **str_ptr == ' ');
