@@ -49,7 +49,7 @@ size_t	parse_args(const char **args, size_t args_size, t_stack *stack)
 
 static bool	int_from_str(const char **str_ptr, int *int_ptr)
 {
-	uint64_t		nbr;
+	unsigned int	nbr;
 	int				tmp;
 	bool			is_negative;
 
@@ -63,7 +63,7 @@ static bool	int_from_str(const char **str_ptr, int *int_ptr)
 	{
 		nbr = nbr * 10 + (**str_ptr - '0');
 		if ((!is_negative && nbr > INT_MAX)
-			|| (is_negative && nbr > (uint64_t) INT_MAX + 1))
+			|| (is_negative && nbr > (unsigned int) INT_MAX + 1))
 			return (false);
 		(void)(*str_ptr)++;
 	}

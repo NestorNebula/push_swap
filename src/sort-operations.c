@@ -16,14 +16,14 @@ static int	abs(int n);
 
 static int	get_ops_sum(t_operations *ops);
 
-static int	gap_to_top_force_bottom(t_stack *stack, uint64_t index);
+static int	gap_to_top_force_bottom(t_stack *stack, unsigned int index);
 
-t_operations	find_minimum_operations(uint64_t index,
+t_operations	find_minimum_operations(unsigned int index,
 		t_stack *src_stack, t_stack *dest_stack, bool asc)
 {
 	t_operations	min_ops;
 	t_operations	ops;
-	uint64_t		target;
+	unsigned int	target;
 
 	if (asc)
 		target = find_minimum_bigger(dest_stack, src_stack->content[index]);
@@ -51,8 +51,8 @@ t_operations	find_best_operations(t_stack *src_stack,
 {
 	t_operations	best_ops;
 	t_operations	ops;
-	uint64_t		i;
-	uint64_t		index;
+	unsigned int	i;
+	unsigned int	index;
 
 	i = 0;
 	best_ops.sum = src_stack->size + dest_stack->size;
@@ -97,9 +97,9 @@ static int	get_ops_sum(t_operations *ops)
 	return (abs(ops->src_stack_ops) + abs(ops->dest_stack_ops));
 }
 
-static int	gap_to_top_force_bottom(t_stack *stack, uint64_t index)
+static int	gap_to_top_force_bottom(t_stack *stack, unsigned int index)
 {
-	uint64_t	v_index;
+	unsigned int	v_index;
 
 	if (stack == NULL || stack->len <= 1)
 		return (0);

@@ -14,11 +14,11 @@
 #include "sort.h"
 
 static void			handle_three_cases(t_stack *stack,
-						uint64_t b, uint64_t m, uint64_t t);
+						unsigned int b, unsigned int m, unsigned int t);
 
 void	sort_two(t_stack *stack)
 {
-	uint64_t	top;
+	unsigned int	top;
 
 	if (stack == NULL || stack->len != 2)
 		return ;
@@ -31,8 +31,8 @@ void	sort_two(t_stack *stack)
 
 void	sort_three(t_stack *stack)
 {
-	uint64_t	middle;
-	uint64_t	top;
+	unsigned int	middle;
+	unsigned int	top;
 
 	if (stack == NULL || stack->len != 3)
 		return ;
@@ -46,7 +46,7 @@ void	sort_three(t_stack *stack)
 }
 
 static void	handle_three_cases(t_stack *stack,
-		uint64_t b, uint64_t m, uint64_t t)
+		unsigned int b, unsigned int m, unsigned int t)
 {
 	const int	*c = stack->content;
 

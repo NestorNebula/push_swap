@@ -14,9 +14,9 @@
 
 bool	is_sorted_stack(t_stack *stack, bool asc)
 {
-	uint64_t	i;
-	uint64_t	index;
-	uint64_t	next_index;
+	unsigned int	i;
+	unsigned int	index;
+	unsigned int	next_index;
 
 	if (stack == NULL)
 		return (false);
@@ -39,12 +39,12 @@ bool	is_sorted_stack(t_stack *stack, bool asc)
 	return (true);
 }
 
-uint64_t	find_maximum_smaller(t_stack *stack, int n)
+unsigned int	find_maximum_smaller(t_stack *stack, int n)
 {
-	int			*max;
-	int			*max_smaller;
-	uint64_t	i;
-	uint64_t	index;
+	int				*max;
+	int				*max_smaller;
+	unsigned int	i;
+	unsigned int	index;
 
 	if (stack == NULL || stack->len == 0)
 		return (0);
@@ -68,12 +68,12 @@ uint64_t	find_maximum_smaller(t_stack *stack, int n)
 	return (max - stack->content);
 }
 
-uint64_t	find_minimum_bigger(t_stack *stack, int n)
+unsigned int	find_minimum_bigger(t_stack *stack, int n)
 {
-	int			*min;
-	int			*min_bigger;
-	uint64_t	i;
-	uint64_t	index;
+	int				*min;
+	int				*min_bigger;
+	unsigned int	i;
+	unsigned int	index;
 
 	if (stack == NULL || stack->len == 0)
 		return (0);
@@ -97,10 +97,10 @@ uint64_t	find_minimum_bigger(t_stack *stack, int n)
 	return (min - stack->content);
 }
 
-int	gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom)
+int	gap_to_top(t_stack *stack, unsigned int index, bool allow_bottom)
 {
-	uint64_t	v_index;
-	uint64_t	v_top_index;
+	unsigned int	v_index;
+	unsigned int	v_top_index;
 
 	if (stack == NULL || stack->len == 0)
 		return (0);

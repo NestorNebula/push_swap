@@ -57,7 +57,7 @@ void			sort_three(t_stack *stack);
  * false otherwise
  * @return An operations structure
  */
-t_operations	find_minimum_operations(uint64_t index,
+t_operations	find_minimum_operations(unsigned int index,
 					t_stack *src_stack, t_stack *dest_stack, bool asc);
 
 /**

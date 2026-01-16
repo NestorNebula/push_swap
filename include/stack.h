@@ -18,11 +18,11 @@
 # include <stdint.h>
 
 typedef struct s_stack {
-	int			*content;
-	size_t		size;
-	size_t		len;
-	uint64_t	top;
-	uint64_t	bottom;
+	int				*content;
+	size_t			size;
+	size_t			len;
+	unsigned int	top;
+	unsigned int	bottom;
 }				t_stack;
 
 /**
@@ -31,7 +31,7 @@ typedef struct s_stack {
  * @param size The size of the stack's content
  * @return A pointer to a stack structure. NULL if an error occurs
  */
-t_stack		*init_stack(size_t size);
+t_stack			*init_stack(size_t size);
 
 /**
  * Pushes an integer at the top of a stack.
@@ -40,7 +40,7 @@ t_stack		*init_stack(size_t size);
  * @param stack A pointer to a stack structure
  * @param n The integer to push at the top of the stack
  */
-void		push_stack(t_stack *stack, int n);
+void			push_stack(t_stack *stack, int n);
 
 /*
  * Pops the element at the top of a stack.
@@ -50,7 +50,7 @@ void		push_stack(t_stack *stack, int n);
  * @return The integer popped from the stack.
  * If the given stack is empty, the return value is undefined
  */
-int			pop_stack(t_stack *stack);
+int				pop_stack(t_stack *stack);
 
 /**
  * Checks that a stack is sorted.
@@ -60,7 +60,7 @@ int			pop_stack(t_stack *stack);
  * else descending.
  * @return True if the stack is sorted, false otherwise
  */
-bool		is_sorted_stack(t_stack *stack, bool asc);
+bool			is_sorted_stack(t_stack *stack, bool asc);
 
 /**
  * Searches for the maximum number in a stack that is
@@ -72,7 +72,7 @@ bool		is_sorted_stack(t_stack *stack, bool asc);
  * @param n The number against which the stack's numbers will be compared
  * @return The index of the result number
  */
-uint64_t	find_maximum_smaller(t_stack *stack, int n);
+unsigned int	find_maximum_smaller(t_stack *stack, int n);
 
 /**
  * Searches for the minimum number in a stack that is
@@ -84,7 +84,7 @@ uint64_t	find_maximum_smaller(t_stack *stack, int n);
  * @param n The number against which the stack's numbers will be compared
  * @return The index of the result number
  */
-uint64_t	find_minimum_bigger(t_stack *stack, int n);
+unsigned int	find_minimum_bigger(t_stack *stack, int n);
 
 /**
  * Computes the number of elements in the stack separing
@@ -97,13 +97,14 @@ uint64_t	find_minimum_bigger(t_stack *stack, int n);
  * A negative value will be returned only if the gap is closest by going down
  * @return The gap to the top of the stack for the given index
  */
-int			gap_to_top(t_stack *stack, uint64_t index, bool allow_bottom);
+int				gap_to_top(t_stack *stack, unsigned int index,
+					bool allow_bottom);
 
 /**
  * Frees a stack structure.
  *
  * @param stack A pointer to a stack structure
  */
-void		free_stack(t_stack *stack);
+void			free_stack(t_stack *stack);
 
 #endif // !STACK_H
