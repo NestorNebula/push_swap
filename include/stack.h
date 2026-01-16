@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #ifndef STACK_H
-#define STACK_H
+# define STACK_H
 
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdint.h>
 
 typedef struct s_stack {
 	int			*content;

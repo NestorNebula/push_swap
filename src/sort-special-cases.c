@@ -14,9 +14,9 @@
 #include "sort.h"
 
 static void			handle_three_cases(t_stack *stack,
-		uint64_t b, uint64_t m, uint64_t t);
+						uint64_t b, uint64_t m, uint64_t t);
 
-void			sort_two(t_stack *stack)
+void	sort_two(t_stack *stack)
 {
 	uint64_t	top;
 
@@ -45,11 +45,11 @@ void	sort_three(t_stack *stack)
 	handle_three_cases(stack, stack->bottom, middle, top);
 }
 
-static void			handle_three_cases(t_stack *stack,
+static void	handle_three_cases(t_stack *stack,
 		uint64_t b, uint64_t m, uint64_t t)
 {
-	const int *c = stack->content;
-	
+	const int	*c = stack->content;
+
 	if (c[b] < c[m] && c[m] > c[t] && c[b] < c[t])
 		do_stack_op(stack, op_reverse_rotate, "rra");
 	else if (c[b] > c[m] && c[m] < c[t] && c[b] < c[t])

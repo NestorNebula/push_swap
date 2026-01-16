@@ -19,9 +19,9 @@
 #define ERR "Error\n"
 
 static void	init_prog(int argc, char *argv[],
-		t_stack **stack_a, t_stack **stack_b);
+				t_stack **stack_a, t_stack **stack_b);
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;

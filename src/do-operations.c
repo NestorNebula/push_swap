@@ -16,16 +16,15 @@
 
 #define OPS_STR_LEN 3
 
-static void		do_common_operations(t_stack *src_stack, t_stack *dest_stack,
-		t_operations *ops);
+static void	do_common_operations(t_stack *src_stack, t_stack *dest_stack,
+				t_operations *ops);
 
-static void		do_individual_operations(t_stack *stack,
-		const char *stack_char, int ops);
+static void	do_individual_operations(t_stack *stack,
+				const char *stack_char, int ops);
 
-void			do_operations(t_stack *src_stack, t_stack *dest_stack,
-		t_operations *ops, bool asc)
+void	do_operations(t_stack *src_stack, t_stack *dest_stack,
+					t_operations *ops, bool asc)
 {
-
 	do_common_operations(src_stack, dest_stack, ops);
 	if (asc)
 	{
@@ -41,7 +40,7 @@ void			do_operations(t_stack *src_stack, t_stack *dest_stack,
 	}
 }
 
-static void		do_common_operations(t_stack *src_stack, t_stack *dest_stack,
+static void	do_common_operations(t_stack *src_stack, t_stack *dest_stack,
 		t_operations *ops)
 {
 	while (ops->src_stack_ops > 0 && ops->dest_stack_ops > 0)
@@ -58,7 +57,7 @@ static void		do_common_operations(t_stack *src_stack, t_stack *dest_stack,
 	}
 }
 
-static void		do_individual_operations(t_stack *stack,
+static void	do_individual_operations(t_stack *stack,
 		const char *stack_char, int ops)
 {
 	char	op_str[OPS_STR_LEN + 1];

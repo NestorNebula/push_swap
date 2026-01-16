@@ -33,7 +33,7 @@ t_stack	*init_stack(size_t size)
 	return (stack);
 }
 
-void		push_stack(t_stack *stack, int n)
+void	push_stack(t_stack *stack, int n)
 {
 	if (stack == NULL || stack->len == stack->size)
 		return ;
@@ -43,7 +43,7 @@ void		push_stack(t_stack *stack, int n)
 	stack->len++;
 }
 
-int			pop_stack(t_stack *stack)
+int	pop_stack(t_stack *stack)
 {
 	if (stack == NULL || stack->len == 0)
 		return (0);

@@ -22,7 +22,7 @@ void	op_swap(t_stack *stack)
 	if (stack->top > 0)
 		swap[0] = stack->content + stack->top - 1;
 	else
-	 swap[0] = stack->content + stack->size - 1;
+		swap[0] = stack->content + stack->size - 1;
 	if (swap[0] > stack->content)
 		swap[1] = swap[0] - 1;
 	else
@@ -68,9 +68,8 @@ void	op_reverse_rotate(t_stack *stack)
 			stack->top = 0;
 		stack->content[stack->top++] = stack->content[stack->bottom++];
 	}
-	else {
+	else
 		stack->top = ++stack->bottom;
-	}
 	if (stack->bottom == stack->size)
 		stack->bottom = 0;
 }

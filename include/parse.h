@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef PARSE_H
-#define PARSE_H
+# define PARSE_H
 
-#include "stack.h"
+# include "stack.h"
 
 /**
  * Parse the program's arguments and store them in stack.

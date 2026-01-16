@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #ifndef SORT_H
-#define SORT_H
+# define SORT_H
 
-#include "stack.h"
+# include "stack.h"
 
 typedef struct s_operations {
 	int	src_stack_ops;
-	int dest_stack_ops;
-	int sum;
+	int	dest_stack_ops;
+	int	sum;
 }				t_operations;
 
 /**
@@ -58,7 +58,7 @@ void			sort_three(t_stack *stack);
  * @return An operations structure
  */
 t_operations	find_minimum_operations(uint64_t index,
-		t_stack *src_stack, t_stack *dest_stack, bool asc);
+					t_stack *src_stack, t_stack *dest_stack, bool asc);
 
 /**
  * Finds the element with the smallest number of operations to be moved
@@ -71,7 +71,7 @@ t_operations	find_minimum_operations(uint64_t index,
  * @return An operations structure
  */
 t_operations	find_best_operations(t_stack *src_stack,
-		t_stack *dest_stack, bool asc);
+					t_stack *dest_stack, bool asc);
 
 /**
  * Executes the given operations on a source stack and a destination stack.
@@ -83,8 +83,7 @@ t_operations	find_best_operations(t_stack *src_stack,
  * false otherwise
  */
 void			do_operations(t_stack *src_stack, t_stack *dest_stack,
-		t_operations *ops, bool asc);
-
+					t_operations *ops, bool asc);
 
 /**
  * Calls an operation function on a stack structure,
@@ -95,7 +94,7 @@ void			do_operations(t_stack *src_stack, t_stack *dest_stack,
  * @param op_str The string that will be printed after operation execution
  */
 void			do_stack_op(t_stack *stack,
-		void (*op)(t_stack *), const char *op_str);
+					void (*op)(t_stack *), const char *op_str);
 
 /**
  * Calls an operation function on two stack structures,
@@ -107,7 +106,7 @@ void			do_stack_op(t_stack *stack,
  * @param op_str The string that will be printed after operation executions
  */
 void			do_both_stack_op(t_stack *stack_a, t_stack *stack_b,
-		void (*op)(t_stack *), const char *op_str);
+					void (*op)(t_stack *), const char *op_str);
 
 /**
  * Calls the push operation with a source and a destination stack,
@@ -119,6 +118,6 @@ void			do_both_stack_op(t_stack *stack_a, t_stack *stack_b,
  * @param op_str The string that will be printed after operation execution
  */
 void			do_push(t_stack *src_stack, t_stack *dest_stack,
-		void (*push)(t_stack *, t_stack *), const char *op_str);
+					void (*push)(t_stack *, t_stack *), const char *op_str);
 
 #endif // !SORT_H

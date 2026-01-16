@@ -20,7 +20,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_operations	ops;
 
-	if (stack_a == NULL || stack_b == NULL ||stack_a->len <= 1
+	if (stack_a == NULL || stack_b == NULL || stack_a->len <= 1
 		|| is_sorted_stack(stack_a, true))
 		return ;
 	if (stack_a->len == 2)
@@ -39,7 +39,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			do_operations(stack_b, stack_a, &ops, true);
 		}
 		set_min_to_top(stack_a);
-	};
+	}
 }
 
 static void	set_min_to_top(t_stack *stack)

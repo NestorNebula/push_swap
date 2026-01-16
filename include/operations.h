@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
-#define OPERATIONS_H
+# define OPERATIONS_H
 
-#include "stack.h"
+# include "stack.h"
 
 /**
  * Swaps the first 2 elements at the top of a stack.

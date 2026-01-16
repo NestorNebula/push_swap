@@ -98,7 +98,7 @@ static size_t	parse_arg(const char *arg, t_stack *stack)
 	return (count);
 }
 
-static bool		check_duplicates(t_stack *stack)
+static bool	check_duplicates(t_stack *stack)
 {
 	size_t	i;
 	size_t	j;
