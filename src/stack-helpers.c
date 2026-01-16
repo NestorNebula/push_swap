@@ -26,6 +26,7 @@
 
 bool		is_sorted_stack(t_stack *stack, bool asc)
 {
+	uint64_t	i;
 	uint64_t	index;
 	uint64_t	next_index;
 
@@ -33,19 +34,19 @@ bool		is_sorted_stack(t_stack *stack, bool asc)
 		return (false);
 	if (stack->size < 2)
 		return (true);
-	index = stack->bottom;
-	while (index + 1 != stack->top
-		&& (index != stack->size - 1 || stack->top != 0))
+	i = 0;
+	while (i + 1 < stack->size)
 	{
+		index = stack->bottom + i;
+		if (index >= stack->size)
+			index -= stack->size;
 		next_index = index + 1;
-		if (stack->bottom == stack->size - 1)
-			next_index = 0;
+		if (next_index >= stack->size)
+			next_index -= stack->size;
 		if ((asc && stack->content[index] <= stack->content[next_index])
 			|| (!asc && stack->content[index] >= stack->content[next_index]))
 			return (false);
-		index++;
-		if (index == stack->size)
-			index = 0;
+		i++;
 	}
 	return (true);
 }
