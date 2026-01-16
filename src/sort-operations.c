@@ -17,19 +17,33 @@ static int	abs(int n);
 
 static int	get_ops_sum(t_operations *ops);
 
+static int	gap_to_top_force_bottom(t_stack *stack, uint64_t index);
+
 t_operations	find_minimum_operations(uint64_t index,
 		t_stack *src_stack, t_stack *dest_stack, bool asc)
 {
 	t_operations	min_ops;
+	t_operations	ops;
 	uint64_t		target;
 
-	min_ops.src_stack_ops = gap_to_top(src_stack, index, true);
 	if (asc)
 		target = find_minimum_bigger(dest_stack, src_stack->content[index]);
 	else
 		target = find_maximum_smaller(dest_stack, src_stack->content[index]);
-	min_ops.dest_stack_ops = gap_to_top(dest_stack, target, true);
-	min_ops.sum = get_ops_sum(&min_ops);
+	ops.src_stack_ops = gap_to_top(src_stack, index, false);
+	ops.dest_stack_ops = gap_to_top(dest_stack, target, false);
+	ops.sum = get_ops_sum(&ops);
+	min_ops = ops;
+	ops.src_stack_ops = gap_to_top_force_bottom(src_stack, index);
+	ops.dest_stack_ops = gap_to_top_force_bottom(dest_stack, target);
+	ops.sum = get_ops_sum(&ops);
+	if (ops.sum < min_ops.sum)
+		min_ops = ops;
+	ops.src_stack_ops = gap_to_top(src_stack, index, true);
+	ops.dest_stack_ops = gap_to_top(dest_stack, target, true);
+	ops.sum = get_ops_sum(&ops);
+	if (ops.sum < min_ops.sum)
+		min_ops = ops;
 	return (min_ops);
 }
 
@@ -82,4 +96,16 @@ static int	get_ops_sum(t_operations *ops)
 		return (-(ops->dest_stack_ops));
 	}
 	return (abs(ops->src_stack_ops) + abs(ops->dest_stack_ops));
+}
+
+static int	gap_to_top_force_bottom(t_stack *stack, uint64_t index)
+{
+	uint64_t	v_index;
+
+	if (stack == NULL || stack->len <= 1)
+		return (0);
+	v_index = index;
+	if (v_index < stack->bottom)
+		v_index += stack->size;
+	return (stack->bottom - v_index - 1);
 }
