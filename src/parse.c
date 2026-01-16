@@ -29,7 +29,7 @@ size_t	parse_args(const char **args, size_t args_size, t_stack *stack)
 
 	count = 0;
 	i = 0;
-	if (stack)
+	if (stack != NULL)
 	{
 		stack->top = stack->size;
 		stack->bottom = stack->top;
@@ -58,7 +58,7 @@ static bool	int_from_str(const char **str_ptr, int *int_ptr)
 	is_negative = **str_ptr == '-';
 	if (**str_ptr == '-' || **str_ptr == '+')
 		(void)(*str_ptr)++;
-	if (**str_ptr == '\0')
+	if (!ft_isdigit(**str_ptr))
 		return (false);
 	while (ft_isdigit(**str_ptr))
 	{
@@ -73,7 +73,7 @@ static bool	int_from_str(const char **str_ptr, int *int_ptr)
 		tmp = -((int) nbr);
 	if (int_ptr != NULL)
 		*int_ptr = tmp;
-	return (**str_ptr == '\0' || **str_ptr == ' ');
+	return (true);
 }
 
 static size_t	parse_arg(const char *arg, t_stack *stack)
