@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "parse.h"
 #include "sort.h"
-#include "stack.h"
 #include "unistd.h"
 
 #define ERR "Error\n"

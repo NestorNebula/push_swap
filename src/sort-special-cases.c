@@ -12,7 +12,6 @@
 
 #include "operations.h"
 #include "sort.h"
-#include "stack.h"
 
 static void			handle_three_cases(t_stack *stack,
 		uint64_t b, uint64_t m, uint64_t t);

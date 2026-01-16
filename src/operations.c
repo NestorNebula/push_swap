@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "operations.h"
-#include "stack.h"
 
 void	op_swap(t_stack *stack)
 {

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <limits.h>
-#include <stdbool.h>
 #include "libft.h"
 #include "parse.h"
 

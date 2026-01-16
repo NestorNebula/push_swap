@@ -12,18 +12,6 @@
 
 #include "stack.h"
 
-/* uint64_t	get_stack_len(t_stack *stack)
-{
-	uint64_t	top;
-	
-	if (stack == NULL)
-		return (0);
-	top = stack->top;
-	if (top < stack->bottom)
-		top += stack->size;
-	return (top - stack->bottom);
-} */
-
 bool		is_sorted_stack(t_stack *stack, bool asc)
 {
 	uint64_t	i;
