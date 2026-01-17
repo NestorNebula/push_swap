@@ -15,7 +15,6 @@
 #include "libft.h"
 #include "operations.h"
 #include "parse.h"
-#include "sort.h"
 #include "stack.h"
 #include "unistd.h"
 
@@ -109,33 +108,44 @@ static bool	exec_command(t_stack *stack_a, t_stack *stack_b,
 	size_t	command_len;
 
 	command_len = ft_strlen(command);
-	return (command_switch(stack_a, stack_b, command, command_len));
+	if (ft_strncmp(command, "ss\n", command_len + 1) == 0)
+	{
+		op_swap(stack_a);
+		op_swap(stack_b);
+	}
+	else if (ft_strncmp(command, "rr\n", command_len + 1) == 0)
+	{
+		op_rotate(stack_a);
+		op_rotate(stack_b);
+	}
+	else if (ft_strncmp(command, "rrr\n", command_len + 1) == 0)
+	{
+		op_reverse_rotate(stack_a);
+		op_reverse_rotate(stack_b);
+	}
+	else
+		return (command_switch(stack_a, stack_b, command, command_len));
+	return (true);
 }
 
 static bool command_switch(t_stack *stack_a, t_stack *stack_b,
 				const char *command, size_t command_len)
 {
-	if (ft_strncmp(command, "sa\n", command_len + 1) == 0
-		|| ft_strncmp(command, "ss\n", command_len + 1) == 0)
+	if (ft_strncmp(command, "sa\n", command_len + 1) == 0)
 		op_swap(stack_a);
-	else if (ft_strncmp(command, "sb\n", command_len + 1) == 0
-		|| ft_strncmp(command, "ss\n", command_len + 1) == 0)
+	else if (ft_strncmp(command, "sb\n", command_len + 1) == 0)
 		op_swap(stack_b);
 	else if (ft_strncmp(command, "pa\n", command_len + 1) == 0)
 		op_push(stack_b, stack_a);
 	else if (ft_strncmp(command, "pb\n", command_len + 1) == 0)
 		op_push(stack_a, stack_b);
-	else if (ft_strncmp(command, "ra\n", command_len + 1) == 0
-		|| ft_strncmp(command, "rr\n", command_len + 1) == 0)
+	else if (ft_strncmp(command, "ra\n", command_len + 1) == 0)
 		op_rotate(stack_a);
-	else if (ft_strncmp(command, "rb\n", command_len + 1) == 0
-		|| ft_strncmp(command, "rr\n", command_len + 1) == 0)
+	else if (ft_strncmp(command, "rb\n", command_len + 1) == 0)
 		op_rotate(stack_b);
-	else if (ft_strncmp(command, "rra\n", command_len + 1) == 0
-		|| ft_strncmp(command, "rrr\n", command_len + 1) == 0)
+	else if (ft_strncmp(command, "rra\n", command_len + 1) == 0)
 		op_reverse_rotate(stack_a);
-	else if (ft_strncmp(command, "rrb\n", command_len + 1) == 0
-		|| ft_strncmp(command, "rrr\n", command_len + 1) == 0)
+	else if (ft_strncmp(command, "rrb\n", command_len + 1) == 0)
 		op_reverse_rotate(stack_b);
 	else
 		return (false);
