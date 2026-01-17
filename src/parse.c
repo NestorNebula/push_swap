@@ -49,7 +49,7 @@ size_t	parse_args(const char **args, size_t args_size, t_stack *stack)
 
 static bool	int_from_str(const char **str_ptr, int *int_ptr)
 {
-	unsigned int	nbr;
+	uint64_t		nbr;
 	int				tmp;
 	bool			is_negative;
 
