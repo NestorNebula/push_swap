@@ -28,10 +28,10 @@ static void	read_commands(t_stack *stack_a, t_stack *stack_b);
 static bool	exec_command(t_stack *stack_a, t_stack *stack_b,
 				const char *command);
 
-static bool command_switch(t_stack *stack_a, t_stack *stack_b,
+static bool	command_switch(t_stack *stack_a, t_stack *stack_b,
 				const char *command, size_t command_len);
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -128,7 +128,7 @@ static bool	exec_command(t_stack *stack_a, t_stack *stack_b,
 	return (true);
 }
 
-static bool command_switch(t_stack *stack_a, t_stack *stack_b,
+static bool	command_switch(t_stack *stack_a, t_stack *stack_b,
 				const char *command, size_t command_len)
 {
 	if (ft_strncmp(command, "sa\n", command_len + 1) == 0)
