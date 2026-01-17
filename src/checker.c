@@ -81,20 +81,18 @@ static void	read_commands(t_stack *stack_a, t_stack *stack_b)
 
 	err = false;
 	command = get_next_line(STDIN_FILENO);
-	while (command != NULL && !err)
+	while (command != NULL)
 	{
 		if (!exec_command(stack_a, stack_b, command))
 			err = true;
 		free((void *) command);
-		command = get_next_line(STDIN_FILENO);
-	}
-	while (command != NULL)
-	{
-		free((void *) command);
+		if (err)
+			break ;
 		command = get_next_line(STDIN_FILENO);
 	}
 	if (err)
 	{
+		(void) get_next_line(-1);
 		write(STDERR_FILENO, ERR, ft_strlen(ERR));
 		free_stack(stack_a);
 		free_stack(stack_b);
