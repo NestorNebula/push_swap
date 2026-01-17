@@ -14,6 +14,7 @@
 
 # define GET_NEXT_LINE_H
 
+# include <stdbool.h>
 # include <stddef.h>
 
 # ifndef BUFFER_SIZE
@@ -64,8 +65,9 @@ void		gnl_lst_add(t_gnl_list **lst, t_gnl_list *new);
  *	Frees the node and its content. Links the previous node to the next one.
  *
  *	@param lst A pointer to a node
+ *	@param free_all If true, frees every node following the given node
  */
-void		gnl_lst_free(t_gnl_list *lst);
+void		gnl_lst_free(t_gnl_list *lst, bool free_all);
 
 /**
  *  Finds the first element of the list with a corresponding fd.

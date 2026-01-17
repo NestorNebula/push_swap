@@ -49,13 +49,27 @@ void	gnl_lst_add(t_gnl_list **lst, t_gnl_list *new)
 		*lst = new;
 }
 
-void	gnl_lst_free(t_gnl_list *lst)
+void	gnl_lst_free(t_gnl_list *lst, bool free_all)
 {
-	if (lst->prev != NULL)
-		lst->prev->next = lst->next;
-	if (lst->next != NULL)
-		lst->next->prev = lst->prev;
-	free(lst);
+	t_gnl_list	*next;
+
+	if (free_all)
+	{
+		while (lst != NULL)
+		{
+			next = lst->next;
+			free(lst);
+			lst = next;
+		}
+	}
+	else if (lst != NULL)
+	{
+		if (lst->prev != NULL)
+			lst->prev->next = lst->next;
+		if (lst->next != NULL)
+			lst->next->prev = lst->prev;
+		free(lst);
+	}
 }
 
 t_gnl_list	*gnl_lst_find(t_gnl_list *lst, int fd)
