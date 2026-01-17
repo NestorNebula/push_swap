@@ -51,7 +51,8 @@ char	*get_str_val(const char *str, t_conv *conv)
 	if ((conv->flags & DOT_F) && str_len > conv->prec)
 		str_len = conv->prec;
 	val = (char *) malloc(sizeof(char) * (str_len + 1));
-	ft_strlcpy(val, str, str_len + 1);
+	if (val != NULL)
+		ft_strlcpy(val, str, str_len + 1);
 	return (val);
 }
 
