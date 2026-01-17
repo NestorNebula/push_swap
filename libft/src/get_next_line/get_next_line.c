@@ -109,8 +109,12 @@ char	*get_next_line(int fd)
 	static t_gnl_list	*lst = NULL;
 	t_gnl_list			*node;
 
-	if (BUFFER_SIZE < 0)
+	if (BUFFER_SIZE < 0 || fd == -1)
+	{
+		gnl_lst_free(lst, true);
+		lst = NULL;
 		return (NULL);
+	}
 	node = gnl_lst_find(lst, fd);
 	if (node == NULL)
 	{
@@ -119,12 +123,11 @@ char	*get_next_line(int fd)
 			return (NULL);
 		gnl_lst_add(&lst, node);
 	}
-	if (handle_read(fd, &node->cont) == NULL
-		|| handle_result(&node->cont) == NULL)
+	if (!handle_read(fd, &node->cont) || !handle_result(&node->cont))
 	{
 		if (node == lst)
 			lst = node->next;
-		gnl_lst_free(node);
+		gnl_lst_free(node, false);
 		return (NULL);
 	}
 	return (node->cont.line);
