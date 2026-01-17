@@ -1,5 +1,7 @@
 NAME = push_swap
 
+BONUS = checker
+
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -25,7 +27,14 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/stack.c $(SRC_DIR)/stack-helpers.c \
 	  $(SRC_DIR)/sort-operations.c $(SRC_DIR)/sort-helpers.c \
 	  $(SRC_DIR)/do-operations.c  $(SRC_DIR)/sort-special-cases.c
 
+BONUS_SRC = $(SRC_DIR)/stack.c $(SRC_DIR)/stack-helpers.c $(SRC_DIR)/parse.c \
+			$(SRC_DIR)/operations.c $(SRC_DIR)/sort.c $(SRC_DIR)/sort-operations.c \
+			$(SRC_DIR)/sort-helpers.c $(SRC_DIR)/do-operations.c  \
+			$(SRC_DIR)/sort-special-cases.c $(SRC_DIR)/checker.c
+
 OBJ = $(SRC:.c=.o)
+
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 LDFLAGS = -L$(LIBFT_DIR) -l$(LIBFT)
 
@@ -37,16 +46,19 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT_LIB)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
+bonus: $(BONUS_OBJ) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) -o $(BONUS) $(BONUS_OBJ) $(LDFLAGS)
+
 $(LIBFT_LIB):
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(RM) $(RMFLAGS) $(OBJ)
+	$(RM) $(RMFLAGS) $(OBJ) $(BONUS_OBJ)
 	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean:
-	$(RM) $(RMFLAGS) $(OBJ)
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(OBJ) $(BONUS_OBJ)
+	$(RM) $(RMFLAGS) $(NAME) $(BONUS)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
